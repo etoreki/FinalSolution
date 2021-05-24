@@ -97,6 +97,8 @@
                         <Label fx:id="lblMonthlyPayment" prefHeight="18.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label text="Payments Saved" GridPane.rowIndex="3" />
                         <Label fx:id="lblPaymentsSaved" prefHeight="18.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="3" /> 
+                        <Label text="Total Escrow" GridPane.rowIndex="5" />
+                        <Label fx:id="lblTotalEscrow" prefHeight="18.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="5" /> 
 							</children>
 						</GridPane>
 					</children>
@@ -118,7 +120,7 @@
 								<TableColumn fx:id="colDueDate" prefWidth="114.0" text="Due Date" />
 								<TableColumn fx:id="colPaymentAmount" prefWidth="102.0" text="Payment" />
 								<TableColumn fx:id="colAdditionalPayment" prefWidth="143.0" text="Additonal Payment" />
-                                          <TableColumn fx:id="colEscrow" prefWidth="88.0" text="Escrow" />
+                                <TableColumn fx:id="colEscrow" prefWidth="88.0" text="Escrow" />
 								<TableColumn fx:id="colInterest" prefWidth="111.0" text="Interest" />
 								<TableColumn fx:id="colPrinciple" prefWidth="155.0" text="Principle" />
 								<TableColumn fx:id="colBalance" prefWidth="146.0" text="Balance" />

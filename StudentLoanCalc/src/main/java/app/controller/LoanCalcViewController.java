@@ -133,6 +133,9 @@ public class LoanCalcViewController implements Initializable {
 
 	@FXML
 	private HBox hbChart;	
+	
+	@FXML
+	private Label lblTotalEscrow;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -194,6 +197,7 @@ public class LoanCalcViewController implements Initializable {
 	private void toggleEscrow(String strLoanType) {
 		EscrowAmount.setVisible((strLoanType == "Home"));
 		lblEscrow.setVisible((strLoanType == "Home"));
+		lblTotalEscrow.setVisible((strLoanType == "Home"));
 	}
 
 	@FXML
@@ -221,6 +225,7 @@ public class LoanCalcViewController implements Initializable {
 		lblInterestSaved.setText("");
 		lblPaymentsSaved.setText("");
 		lblMonthlyPayment.setText("");
+		lblTotalEscrow.setText("");
 	}
 
 	private boolean ValidateData() {
@@ -266,8 +271,7 @@ public class LoanCalcViewController implements Initializable {
 	private void btnCalcLoan(ActionEvent event) {
 
 		// TODO: Call the method to Clear the Results
-		hbChart.getChildren().clear();
-		paymentList.clear();
+		btnClearResultsKeyPress(null);
 		// Validate the data. If the method returns 'false', exit the method
 		if (ValidateData() == false)
 			return;
@@ -295,6 +299,7 @@ public class LoanCalcViewController implements Initializable {
 		lblInterestSaved.setText(fmtCurrency.format(loanNoExtra.getTotalInterest()-loanExtra.getTotalInterest()));
 		lblPaymentsSaved
 				.setText(String.valueOf(loanNoExtra.getLoanPayments().size() - loanExtra.getLoanPayments().size()));
+		lblTotalEscrow.setText(fmtCurrency.format(loanExtra.getEscrow()*loanExtra.getLoanPayments().size()));
 
 		XYChart.Series seriesExtra = new XYChart.Series();
 		XYChart.Series seriesNoExtra = new XYChart.Series();
@@ -372,17 +377,17 @@ public class LoanCalcViewController implements Initializable {
 			years.add(i+"");
 		}
 		//Defining the x axis               
-		CategoryAxis yAxis = new CategoryAxis();    
+		CategoryAxis xAxis = new CategoryAxis();    
 
-		yAxis.setCategories(FXCollections.<String>observableArrayList(years)); 
-		yAxis.setLabel("Year");  
+		xAxis.setCategories(FXCollections.<String>observableArrayList(years)); 
+		xAxis.setLabel("Year");  
 
 		//Defining the y axis 
-		NumberAxis xAxis = new NumberAxis(); 
-		xAxis.setLabel("Amount (USD)");
+		NumberAxis yAxis = new NumberAxis(); 
+		yAxis.setLabel("Amount (USD)");
 
 		//Creating the Bar chart 
-		stackedBarChart = new StackedBarChart<String, Number>(yAxis, xAxis);         
+		stackedBarChart = new StackedBarChart<String, Number>(xAxis, yAxis);         
 		stackedBarChart.setTitle("Monthly Payments"); 
 	}
 	

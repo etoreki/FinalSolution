@@ -51,7 +51,7 @@ public class Loan {
 	public double getTotalPayments() {
 		double tot = 0;
 		for(Payment p:loanPayments) {
-			tot+= p.getPayment();
+			tot+= p.getPayment()+Escrow;
 		}
 		return tot;
 	}
